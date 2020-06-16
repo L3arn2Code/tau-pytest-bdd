@@ -7,14 +7,22 @@ from cucumbers import CucumberBasket
 def test_add():
     pass
 
+@scenario('../features/cucumbers.feature', 'Remove cucumbers from a basket')
+def test_remove():
+    pass
+
 @given(parsers.cfparse('the basket has "{initial:Number}" cucumbers', extra_types=dict(Number=int)))
-def basket():
-    return CucumberBasket(initial_count=2)
+def basket(initial):
+    return CucumberBasket(initial_count=initial)
 
 @when(parsers.cfparse('"{some:Number}" cucumbers are added to the basket', extra_types=dict(Number=int)))
-def add_cucumbers(basket):
-    return basket.add(4)
+def add_cucumbers(basket, some):
+    return basket.add(some)
+
+@when(parsers.cfparse('"{some:Number}" cucumbers are removed from the basket', extra_types=dict(Number=int)))
+def remove_cucumbers(basket, some):
+    return basket.remove(some)
 
 @then(parsers.cfparse('the basket contains "{total:Number}" cucumbers', extra_types=dict(Number=int)))
-def basket_has_total(basket):
-    assert basket.count == 6
+def basket_has_total(basket, total):
+    assert basket.count == total
