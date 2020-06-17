@@ -1,3 +1,4 @@
+@web @duckduckgo
 Feature: DuckDuckGo Web Browsing
   As a web surfer,
   I want to find information online,
@@ -7,12 +8,12 @@ Feature: DuckDuckGo Web Browsing
   Background:
     Given the DuckDuckGo home page is displayed
 
-
+  @short
   Scenario: Basic DuckDuckGo Search
     When the user searches for "panda"
     Then results are shown for "panda"
 
-
+  @long
   Scenario: Lengthy DuckDuckGo Search
     When the user searches for the phrase: """
       When in the Course of human events, it becomes necessary for one people
